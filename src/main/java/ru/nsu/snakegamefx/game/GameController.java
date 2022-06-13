@@ -4,11 +4,14 @@ import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import ru.nsu.snakegame.game.GameState;
+import javafx.stage.Stage;
+import ru.nsu.application.configuration.Configuration;
+import ru.nsu.application.snakegame.SnakeGame;
 import ru.nsu.application.snakegame.SnakeGameController;
 
 import static javafx.animation.Animation.Status.PAUSED;
 import static javafx.animation.Animation.Status.RUNNING;
+import static ru.nsu.snakegame.game.GameState.*;
 import static ru.nsu.snakegame.sprite.snake.Direction.*;
 import static ru.nsu.snakegame.sprite.snake.Direction.DOWN;
 
@@ -19,7 +22,7 @@ public class GameController {
     private final SnakeGameController controller;
     private final GameFX snakeGame;
     private final Timeline timeline;
-
+    private final Stage stage;
     /**
      * Class constructor.
      *
@@ -27,10 +30,11 @@ public class GameController {
      * @param snakeGame  - the model of the snake game.
      * @param timeline   - the instance of the class responsible for changing the frames of the snake game.
      */
-    public GameController(SnakeGameController controller, GameFX snakeGame, Timeline timeline) {
+    public GameController(SnakeGameController controller, GameFX snakeGame, Timeline timeline, Stage stage) {
         this.controller = controller;
         this.snakeGame = snakeGame;
         this.timeline = timeline;
+        this.stage = stage;
     }
 
     /**
@@ -45,11 +49,23 @@ public class GameController {
             return;
         }
         switch (code) {
-            case RIGHT -> snakeGame.setSnakeDirection(RIGHT);
-            case LEFT -> snakeGame.setSnakeDirection(LEFT);
-            case UP -> snakeGame.setSnakeDirection(UP);
-            case DOWN -> snakeGame.setSnakeDirection(DOWN);
-            case ESCAPE -> controller.openModalWindow();
+            case RIGHT -> {
+                snakeGame.setSnakeDirection(RIGHT);
+                timeline.play();
+            }
+            case LEFT -> {
+                snakeGame.setSnakeDirection(LEFT);
+                timeline.play();
+            }
+            case UP -> {
+                snakeGame.setSnakeDirection(UP);
+                timeline.play();
+            }
+            case DOWN -> {
+                snakeGame.setSnakeDirection(DOWN);
+                timeline.play();
+            }
+            case ESCAPE -> timeline.stop();
         }
     }
 
@@ -59,9 +75,10 @@ public class GameController {
      * @param frame - frame on which snake game should be rendered.
      */
     public void run(Group frame) {
-        if (timeline.getStatus() == RUNNING && (snakeGame.getGameState() == GameState.DEFEAT || snakeGame.getGameState() == GameState.VICTORY)) {
+        if (timeline.getStatus() == RUNNING && (snakeGame.getGameState() == DEFEAT || snakeGame.getGameState() == VICTORY)) {
             timeline.stop();
-            controller.openModalWindow();
+            SnakeGame game = new SnakeGame(new Configuration(36, 20, 20, 13, 0, 10, 100));
+            game.setStage(stage);
         }
         snakeGame.update();
         controller.updateScore();

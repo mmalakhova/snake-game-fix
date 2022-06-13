@@ -15,7 +15,3 @@ j
 :src/test/java/ru/nsu/snakegame/sprite/fruit/FruitTest.java,2\f\2f779b795d84766b4468bcf4b7b14096e28606e1
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-q
-Asrc/main/java/ru/nsu/application/configuration/Configuration.java,b\8\b848d9ea32921f4ee4a32fe3532e51ca8ace2b3e
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7

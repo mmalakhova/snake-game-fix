@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.nsu.application.configuration.Configuration;
+import ru.nsu.snakegame.game.GameState;
 import ru.nsu.snakegame.sprite.board.Board;
 import ru.nsu.snakegame.sprite.fruit.Fruit;
 import ru.nsu.snakegame.sprite.snake.Snake;
@@ -121,10 +122,10 @@ public class SnakeGame {
         try {
             BorderPane root = loader.load();
             SnakeGameController snakeGameController = loader.getController();
-            snakeGameController.initialize(stage, configuration, timeline, snakeGame);
+            snakeGameController.initialize(timeline, snakeGame);
             root.setCenter(frame);
             scene = new Scene(root);
-            gameController = new GameController(snakeGameController, snakeGame, timeline);
+            gameController = new GameController(snakeGameController, snakeGame, timeline, stage);
             scene.setOnKeyPressed(gameController::handle);
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -146,6 +147,8 @@ public class SnakeGame {
         this.stage = stage;
         setTimeline();
         setScene();
-        stage.setScene(scene);
+        if (scene != null) {
+            stage.setScene(scene);
+        }
     }
 }

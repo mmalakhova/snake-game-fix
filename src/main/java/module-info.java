@@ -22,8 +22,6 @@ module ru.nsu {
     opens ru.nsu.snakegamefx.sprite to javafx.fxml;
     exports ru.nsu.snakegamefx.game;
     opens ru.nsu.snakegamefx.game to javafx.fxml;
-    exports ru.nsu.application.modalwindow;
-    opens ru.nsu.application.modalwindow to javafx.fxml;
     exports ru.nsu.application.configuration;
     opens ru.nsu.application.configuration to javafx.fxml;
     exports ru.nsu.application.snakegame;

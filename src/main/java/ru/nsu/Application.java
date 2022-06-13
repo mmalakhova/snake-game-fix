@@ -9,7 +9,7 @@ import ru.nsu.application.snakegame.SnakeGame;
  * The main class for launching the application. At start opens menu and sets default configuration of the game.
  */
 public class Application extends javafx.application.Application {
-    private final Configuration DEFAULT_CONFIGURATION = new Configuration(40, 20, 20, 13, 0, 10, 100);
+    private final Configuration DEFAULT_CONFIGURATION = new Configuration(36, 20, 20, 13, 0, 10, 100);
     private final Image ICON = new Image(String.valueOf(getClass().getResource("/ru/nsu/images/icon.png").toExternalForm()));
 
     /**

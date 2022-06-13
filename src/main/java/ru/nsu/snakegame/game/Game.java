@@ -1,5 +1,7 @@
 package ru.nsu.snakegame.game;
 
+import javafx.stage.Stage;
+import ru.nsu.application.snakegame.SnakeGame;
 import ru.nsu.snakegame.sprite.Sprite;
 import ru.nsu.application.configuration.Configuration;
 import ru.nsu.snakegame.sprite.board.Board;
@@ -37,7 +39,6 @@ public class Game {
         this.walls = walls;
         this.gameState = GameState.PLAY;
     }
-
     /**
      * Returns current score.
      * @return current score.
